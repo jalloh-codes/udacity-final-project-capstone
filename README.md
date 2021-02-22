@@ -1,6 +1,6 @@
 # Udacity Capstone Project (final project)
-    This is the Udacity fulltack Nanodegree program final project. I was giving the choise to to choose what types of project it will be. I choose a `project management` as my project.
-    The project have `two` types of users a `manger` and a `member` each user have different role in this application. There are `four  classes` in this project. `Leader`, `Member`, `Project`, and `Task`. The application is authanticated with `Auth0`.
+This is the Udacity fulltack Nanodegree program final project. I was giving the choise to to choose what types of project it will be. I choose a `project management` as my project.
+The project have `two` types of users a `manger` and a `member` each user have different role in this application. There are `four  classes` in this project. `Leader`, `Member`, `Project`, and `Task`. The application is authanticated with `Auth0`.
 ### The Manger Role
     A manger have the role of performing all tasks.
     - A `Manger` can create an acccount him/her self.
@@ -30,7 +30,7 @@ crete new `Application`  and take note of `Domain` name. Go to the `./src/auth/a
 ## Running the server
 Before start your application make sure you have `python3`  installed and make sure you have `postgres`. From within the `./src` directory first ensure you are working using your created virtual environment.
 
-Each time you open a new terminal session, run:
+Run th app:
 
 ```
 export FLASK_APP=api.py;
@@ -42,5 +42,5 @@ To run the server, execute:
 flask run --reload
 ```
 
-The `--reload` flag will detect file changes and restart the server automatically.
+
 
