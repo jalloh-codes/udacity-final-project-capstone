@@ -7,8 +7,9 @@ from sqlalchemy.orm import relationship, sessionmaker
 import json, sys
 
 
-database_path= 'postgres://hllanhox:gUGLEZB43EJ7YDV0XRV8V9pefd3SyKB1@ziggy.db.elephantsql.com:5432/hllanhox'
-
+database_path= os.getenv('DATABASE_URI')
+if not database_path:
+    database_path = database_path = 'postgres://hllanhox:gUGLEZB43EJ7YDV0XRV8V9pefd3SyKB1@ziggy.db.elephantsql.com:5432/hllanhox'
 
 db = SQLAlchemy()
 
