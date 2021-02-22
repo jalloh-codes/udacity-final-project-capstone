@@ -24,12 +24,12 @@ def create_app(test_config=None):
 
     ## ROUTES
     #--------------------GET METHODS------------------#
-    @app.route('/leader',  methods=['GET'])
-    def get_leader():
+    @app.route('/leader/<int:id>',  methods=['GET'])
+    def get_leader(id):
         try:
             req= request.get_json()
             email = req['email']
-            data = Leader.query.filter(email == email).first()
+            data = Leader.query.filter(Leader.id == id).first()
             leader = [data.long()]
             print(req)
 
