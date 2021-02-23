@@ -42,14 +42,12 @@ def create_app(test_config=None):
     def get_leader(id):
         try:
             req= request.get_json()
-            email = req['email']
             data = Leader.query.filter(Leader.id == id).first()
             leader = [data.long()]
-            print(req)
 
             return jsonify({
                 'success': True,
-                'data': [data.long()]
+                'data': leader
 
             }), 200
         except Exception as e:
