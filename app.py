@@ -24,15 +24,18 @@ def create_app(test_config=None):
 
     ## ROUTES
     #--------------------GET METHODS------------------#
-    @app.route('/', )
+    @app.route('/', methods=['GET'])
     def all_leader():
-        leaders = Leader.query.filter(Leader.id == id).first()
-        data = [leader.long() for leader in leaders]
-        return jsonify({
-            'success': True,
-            'data': data
-        })
-
+        try:
+            leaders = Leader.query.filter(Leader.id == id).first()
+            data = [leader.long() for leader in leaders]
+            return jsonify({
+                'success': True,
+                'data': data
+            })
+        except Exception as e:
+            print(e)
+            abort(404)
 
 
     @app.route('/leader/<int:id>',  methods=['GET'])
