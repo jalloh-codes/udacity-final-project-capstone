@@ -38,21 +38,21 @@ def create_app(test_config=None):
             abort(404)
 
 
-    @app.route('/leader/<int:id>',  methods=['GET'])
-    def get_leader(id):
+    #get the all a member base on the leader id
+    @app.route('/member', methods=['GET'])
+    @requires_auth('get:member')
+    def all_leader(payload, id):
         try:
-            req= request.get_json()
-            data = Leader.query.filter(Leader.id == id).first()
-            leader = [data.long()]
-
+            members = Member.query.filter(Member.leader_id == id).all()
+            data = [member.long() for member in members]
             return jsonify({
                 'success': True,
-                'data': leader
-
-            }), 200
+                'data': data
+            })
         except Exception as e:
             print(e)
-            abort(404)
+            abort(401)
+
 
     #get project by  a leader id 
     @app.route('/project/<int:id>', methods=['GET'])
