@@ -24,6 +24,17 @@ def create_app(test_config=None):
 
     ## ROUTES
     #--------------------GET METHODS------------------#
+    @app.route('/', )
+    def all_leader():
+        leaders = Leader.query.filter(Leader.id == id).first()
+        data = [leader.long() for leader in leaders]
+        return jsonify({
+            'success': True,
+            'data': data
+        })
+
+
+
     @app.route('/leader/<int:id>',  methods=['GET'])
     def get_leader(id):
         try:
