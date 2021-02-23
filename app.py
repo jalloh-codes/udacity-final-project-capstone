@@ -39,7 +39,7 @@ def create_app(test_config=None):
 
 
     #get the all a member base on the leader id
-    @app.route('/member', methods=['GET'])
+    @app.route('/member/<int:id>', methods=['GET'])
     @requires_auth('get:member')
     def all_leader(payload, id):
         try:
