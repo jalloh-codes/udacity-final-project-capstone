@@ -1,6 +1,7 @@
 # Udacity Capstone Project (final project)
 This is the Udacity fulltack Nanodegree program final project. I was giving the choise to to choose what types of project it will be. I choose a `project management` as my project.
-The project have `two` types of users a `manger` and a `member` each user have different role in this application. There are `four  classes` in this project. `Leader`, `Member`, `Project`, and `Task`. The application is authanticated with `Auth0`.
+The project have `two` types of users a `manger` and a `member` each user have different role in this application. There are `four  classes` in this project. `Leader`, `Member`, `Project`, and `Task`. The application is authanticated with `Auth0`. The app is running on this link.
+ [Life Demo](https://saylucapstone.herokuapp.com/)
 ### The Manger Role
     A manger have the role of performing all tasks.
     - A `Manger` can create an acccount him/her self.
@@ -24,23 +25,41 @@ The project have `two` types of users a `manger` and a `member` each user have d
 
 ## Auth0 Requirement
 Go the [Auth0](https://auth0.com/) and create a new account or login if you already have an account.
-crete new `Application`  and take note of `Domain` name. Go to the `./src/auth/auth.py` add the domain name to the `AUTH0_DOMAIN` varialbe. Once that is done create an `API` application and get the identifer you have giving your API asign it to the `API_AUDIENCE` variable in the same file.
+crete new `Application`  and take note of `Domain` name. Go to the `./auth.py` add the domain name to the `AUTH0_DOMAIN` varialbe. Once that is done create an `API` application and get the identifer you have giving your API asign it to the `API_AUDIENCE` variable in the same file. Enable RBAC and Enable Add Permissions in the Access Token in the api appliation
+-    ##### Create new API permissions:
+    2. get:member
+    3. get:project
+    4. get:task
+    5. post:member
+    6. post:project
+    7. post:task
+    8. patch:project
+    9. patch:task
+    10. delete:task
+- ##### Manger Role
+  The manager can perform all the permissions.
+- #### Member Role
+  A member can only perform this permissions
+  `get:member  get:project get:task patch:task, delete:task`
 
+## PIP Dependencies
+Make sure you have added your domain, api audience have been added.
+```
+pip3 install -r requirements.txt
+```
 
 ## Running the server
-Before start your application make sure you have `python3`  installed and make sure you have `postgres`. From within the `./src` directory first ensure you are working using your created virtual environment.
+Before start your application make sure you have `python3`  installed and make sure you have `postgres`. 
 
 Run th app:
-
 ```
-export FLASK_APP=api.py;
-```
-
-To run the server, execute:
-
-```
+export FLASK_APP=app.py
 flask run --reload
 ```
+
+To test this app it will be best to use Postman. The token for the `Manager` and the `Member` is availabe in the `./test.py` file. 
+
+
 
 
 
