@@ -27,7 +27,7 @@ def create_app(test_config=None):
     @app.route('/', methods=['GET'])
     def all_leader():
         try:
-            leaders = Leader.query.filter(Leader.id == id).first()
+            leaders = Leader.query.filter(Leader.id == id).all()
             data = [leader.long() for leader in leaders]
             return jsonify({
                 'success': True,
