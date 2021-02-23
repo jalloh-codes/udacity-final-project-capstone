@@ -58,7 +58,7 @@ class MangerTest(unittest.TestCase):
             'name': 'home page',
             'details': 'create the home make sure their is errors',
             'complete': False,
-            'leader_id': 1,
+            'project_id': 1,
             'member_id': 1
         }
 
@@ -66,7 +66,7 @@ class MangerTest(unittest.TestCase):
             'name': 'home page',
             'details': 'create the home make sure their is errors',
             'complete': True,
-            'leader_id': 1,
+            'project_id': 1,
             'member_id': 1
         }
 
@@ -75,14 +75,14 @@ class MangerTest(unittest.TestCase):
     '''
     #get a leader by email
     def get_leader(self):
-        res = self.client().get('/leader')
+        res = self.client().get('/')
         data =  json.loads(res.data)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'])
 
     def error_get_leader(self):
         res = self.client().get('/leader')
-        self.assertEqual(res.status_code, 401)
+        self.assertEqual(res.status_code, 404)
         
     #create a new leader
     def create_leader(self):
@@ -98,6 +98,16 @@ class MangerTest(unittest.TestCase):
     ''''
     Member class test
     '''
+    def get_member(self):
+        res =  self.client().post('/member', headers=manager_auth_header)
+        data =  json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'])
+    
+    def error_get_leader(self):
+        res = self.client().get('/member')
+        self.assertEqual(res.status_code, 401)
+
     #create a new member
     def create_member(self):
         res =  self.client().post('/member', json = self.create_member, headers = manager_auth_header)
@@ -107,16 +117,6 @@ class MangerTest(unittest.TestCase):
 
     def error_create_member(self):
         res = self.client().post('/member', json =self.create_member)
-        self.assertEqual(res.status_code, 401)
-
-    def get_member(self):
-        res = self.client().get('/member/1', headers=manager_auth_header)
-        data =  json.loads(res.data)
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(data['success'])
-
-    def error_get_member(self):
-        res = self.client().get('/member/1')
         self.assertEqual(res.status_code, 401)
 
 
