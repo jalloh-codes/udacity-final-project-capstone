@@ -1,10 +1,9 @@
 import os
 import json
 import unittest
-
-from .database.models import setup_db,  Leader, Project, Member, Task
-from .auth.auth import AuthError, requires_auth
-from .api import  app
+from models import setup_db,  Leader, Project, Member, Task
+from auth import AuthError, requires_auth
+from app import  create_app
 
 
 manager_auth_header = {
@@ -18,10 +17,8 @@ member_auth_header = {
 
 class MangerTest(unittest.TestCase):
 
-
-
     def setUp(self):
-        self.app = app
+        self.app = create_app()
         self.client =  self.app.test_client
         self.database_path = "postgres://hllanhox:gUGLEZB43EJ7YDV0XRV8V9pefd3SyKB1@ziggy.db.elephantsql.com:5432/hllanhox"
         self.init_app(app)
@@ -201,4 +198,5 @@ class MangerTest(unittest.TestCase):
         self.assertEqual(res.status_code, 401)
 
 if __name__ == "__main__":
+    unittest.TestLoader.sortTestMethodsUsing = None
     unittest.main()
